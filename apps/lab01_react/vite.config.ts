@@ -13,10 +13,10 @@ export default defineConfig({
     legacy()
   ],
   base: '/lab01_react/',
-  build: {
-    outDir: path.resolve(__dirname, '../../docs/lab01_react'),
-    emptyOutDir : true
-  },
+build: {
+  outDir: path.resolve(__dirname, '../../docs/lab01_react'),
+  emptyOutDir: true
+},
   test: {
     globals: true,
     environment: 'jsdom',
