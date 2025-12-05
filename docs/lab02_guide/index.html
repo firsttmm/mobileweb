@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KKU Campus Guide - แนะนำสถานที่เที่ยวในมหาวิทยาลัยขอนแก่น</title>
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+       
+        :root {
+            --primary-color: #8b0000; 
+            --secondary-color: #000000; 
+            --accent-color: #ff4d4d; 
+            --text-color: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.1);
+            --card-bg: #1a1a1a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes wiggle {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-10deg) scale(1.1); }
+            50% { transform: rotate(0deg) scale(1); }
+            75% { transform: rotate(10deg) scale(1.1); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+
+        
+        #landing-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #4a0000 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.8s ease-in-out;
+            overflow: hidden; 
+        }
+
+        #landing-page.slide-up {
+            transform: translateY(-100%);
+        }
+
+        /* Canvas Background (Particles) */
+        #bgCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; 
+            pointer-events: none;
+        }
+
+        .landing-content {
+            text-align: center;
+            z-index: 2; 
+        }
+
+        /* Logo Styles */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            z-index: 2; 
+        }
+
+       
+        #logoCanvas {
+            
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 50%; 
+            box-shadow: 0 0 40px rgba(255, 77, 77, 0.4); 
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            
+            
+            animation: wiggle 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        #logoCanvas:hover {
+            animation-play-state: paused; 
+            transform: scale(1.1); 
+            background: rgba(255, 255, 255, 0.15); 
+        }
+
+        .landing-title {
+            font-size: 3rem;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--primary-color);
+            background: -webkit-linear-gradient(#fff, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: floatText 3s ease-in-out infinite;
+        }
+
+        .enter-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: transparent;
+            color: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Kanit', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enter-btn:hover {
+            background: var(--accent-color);
+            box-shadow: 0 0 30px var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        /* --- Wave Animation --- */
+        .ocean { 
+            height: 5%;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: #015871;
+            z-index: 1; 
+        }
+
+        .wave {
+            background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
+            position: absolute;
+            top: -198px;
+            width: 6400px;
+            height: 198px;
+            animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+            transform: translate3d(0, 0, 0);
+            filter: hue-rotate(140deg) brightness(0.6) saturate(3); 
+        }
+
+        .wave:nth-of-type(2) {
+            top: -175px;
+            animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+            opacity: 1;
+        }
+
+        @keyframes wave {
+            0% { margin-left: 0; }
+            100% { margin-left: -1600px; }
+        }
+
+        @keyframes swell {
+            0%, 100% { transform: translate3d(0,-25px,0); }
+            50% { transform: translate3d(0,5px,0); }
+        }
+
+        
+        #main-content {
+            display: none; 
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0f0f 0%, #2b0000 100%);
+            padding-bottom: 50px;
+        }
+
+        
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .nav-menu a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        
+        .intro-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background: var(--bg-glass);
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .intro-section h2 {
+            display: inline-block;
+            animation: floatText 3s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .places-section-title {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: floatText 3s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        
+        .place-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 1px solid #333;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .place-card:hover {
+            transform: translateY(-15px) scale(1.03) rotateX(2deg) rotateY(2deg);
+            box-shadow: 0 15px 35px rgba(139, 0, 0, 0.5);
+            border-color: var(--accent-color);
+        }
+
+        .place-img-container {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .place-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .place-card:hover .place-img {
+            transform: scale(1.1);
+        }
+
+        
+        .time-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--accent-color);
+            z-index: 2;
+        }
+
+        
+        .activity-icons-float {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+            opacity: 1; 
+        }
+
+        .activity-icon {
+            width: 35px;
+            height: 35px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .activity-icon:hover {
+            transform: scale(1.2);
+            background: #ff6b6b;
+        }
+
+        .place-info {
+            padding: 20px;
+            z-index: 1;
+            position: relative;
+            background: var(--card-bg);
+        }
+
+        .place-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .place-card:hover .place-title {
+            color: #ff6b6b;
+            transform: translateX(5px);
+        }
+
+        .place-excerpt {
+            font-size: 0.9rem;
+            color: #bbb;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid var(--accent-color);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            position: relative;
+            animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--accent-color);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            margin-top: 20px;
+        }
+
+        .modal-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-images img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-images img:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        
+        .modal-guide {
+            background: #222;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .guide-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .guide-list {
+            list-style: none;
+            padding-left: 5px;
+        }
+
+        .guide-list li {
+            margin-bottom: 5px;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guide-list li i {
+            color: var(--accent-color);
+            font-size: 0.8rem;
+        }
+
+        
+        .form-section {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 50px;
+            border-left: 5px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .form-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: floatText 3s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+            font-family: 'Kanit';
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: #444;
+            box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.6);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #000;
+            color: #555;
+            margin-top: 50px;
+            border-top: 1px solid #222;
+        }
+
+       
+        @media (max-width: 768px) {
+            .landing-title { font-size: 2rem; }
+            .modal-images { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+   
+    <section id="landing-page">
+        
+        <canvas id="bgCanvas"></canvas>
+
+        
+        <div class="logo-container">
+           
+            <canvas id="logoCanvas" width="200" height="200"></canvas>
+        </div>
+        
+        <div class="landing-content">
+            <h1 class="landing-title">KKU Campus Guide</h1>
+            <p style="color: #bbb; letter-spacing: 1px; margin-top: 10px;">เปิดโลกมหาวิทยาลัยขอนแก่น</p>
+            <button class="enter-btn" onclick="enterSite()">เข้าสู่เว็บไซต์</button>
+        </div>
+
+        
+        <div class="ocean">
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </section>
+
+    
+    <div id="main-content">
+        <nav>
+            <div class="nav-logo"><i class="fas fa-university"></i> KKU Guide</div>
+            <div class="nav-menu">
+                <a href="#places">สถานที่</a>
+                <a href="#suggest">แนะนำสถานที่</a>
+                <a href="#about">ผู้จัดทำ</a>
+            </div>
+        </nav>
+
+        <div class="container">
+            
+            
+            <header class="intro-section" id="about">
+                <h2 style="color: var(--accent-color);">ยินดีต้อนรับสู่รั้วมอดินแดง</h2>
+                <p>รหัสนักศึกษา: 663380244-5 &nbsp;|&nbsp; ชื่อ-สกุล: นางสาวอรจิรา แสนตา </p>
+            </header>
+
+            
+            <section id="places">
+                <h2 class="places-section-title">สถานที่แนะนำ</h2>
+                <div class="places-grid" id="placesGridContainer">
+                    
+                </div>
+            </section>
+
+            
+            <section id="suggest" class="form-section">
+                <h3>แนะนำสถานที่ใหม่</h3>
+                
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="24d3f775-beb8-4403-a3e6-0e80513dbd8b">
+
+                    <div class="form-group">
+                        <label for="placeName">ชื่อสถานที่</label>
+                        <input type="text" id="placeName" name="placeName" required placeholder="เช่น โรงอาหารคอมเพล็กซ์">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">รายละเอียด</label>
+                        <textarea id="description" name="description" rows="3" required placeholder="ทำไมถึงน่าสนใจ..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageUrl">URL ภาพประกอบ</label>
+                        <input type="url" id="imageUrl" name="imageUrl" placeholder="https://...">
+                    </div>
+                    <button type="submit" class="submit-btn">ส่งข้อมูลแนะนำ</button>
+                </form>
+            </section>
+
+        </div>
+
+        <footer>
+            <p>&copy; 2025 KKU Campus Guide.Lab02_663380244-5</p>
+        </footer>
+    </div>
+
+    
+    <div id="placeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modalBody" class="modal-body">
+               
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        function drawKKULogo() {
+            const canvas = document.getElementById('logoCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const centerX = width / 2;
+            const centerY = height / 2;
+
+            
+            ctx.clearRect(0, 0, width, height);
+
+            
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, '#ff4d4d');
+            gradient.addColorStop(1, '#8b0000');
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 85, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = "rgba(255, 77, 77, 0.6)";
+            ctx.fill();
+            ctx.shadowBlur = 0; 
+
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 75, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+            ctx.fill();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "white";
+            ctx.stroke();
+
+            
+            ctx.font = "bold 60px 'Kanit', sans-serif"; 
+            ctx.fillStyle = "white";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("KKU", centerX, centerY + 5);
+
+            
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 60, Math.PI * 1.1, Math.PI * 1.9);
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 60, Math.PI * 0.1, Math.PI * 0.9);
+            ctx.stroke();
+        }
+
+        
+        document.fonts.ready.then(function() {
+            drawKKULogo();
+        });
+
+
+        
+        const bgCanvas = document.getElementById('bgCanvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let particlesArray;
+
+       
+        bgCanvas.width = window.innerWidth;
+        bgCanvas.height = window.innerHeight;
+
+       
+        window.addEventListener('resize', () => {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            initParticles();
+            drawKKULogo(); 
+        });
+
+       
+        class Particle {
+            constructor() {
+                this.x = Math.random() * bgCanvas.width;
+                this.y = Math.random() * bgCanvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = `rgba(255, 77, 77, ${Math.random() * 0.5})`; 
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.01; 
+                if (this.size <= 0.2 || this.x < 0 || this.x > bgCanvas.width || this.y < 0 || this.y > bgCanvas.height) {
+                    this.x = Math.random() * bgCanvas.width;
+                    this.y = Math.random() * bgCanvas.height;
+                    this.size = Math.random() * 3 + 1;
+                }
+            }
+            draw() {
+                bgCtx.fillStyle = this.color;
+                bgCtx.beginPath();
+                bgCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                bgCtx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            for (let i = 0; i < 50; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+
+        
+        const placesData = [
+            {
+                title: "บึงสีฐาน",
+                desc: "บึงสีฐานเป็นสถานที่พักผ่อนหย่อนใจที่สำคัญที่สุดแห่งหนึ่งของมหาวิทยาลัยขอนแก่น ประกอบด้วยบึงน้ำขนาดใหญ่สองแห่ง ช่วงเย็นจะเต็มไปด้วยนักศึกษามาวิ่งออกกำลังกาย ให้อาหารปลา และชมพระอาทิตย์ตกดิน",
+                openTime: "05:00 - 22:00 น.",
+                activities: [
+                    "วิ่งออกกำลังกายรอบบึง",
+                    "ให้อาหารปลา",
+                    "ชมพระอาทิตย์ตกดิน",
+                    "ถ่ายรูปลานวัฒนธรรม"
+                ],
+                icons: ["fa-running", "fa-camera", "fa-sun"],
+                images: [
+                    "https://scontent.fbkk29-1.fna.fbcdn.net/v/t1.6435-9/117945072_632979874083915_1656980860212634549_n.jpg?_nc_cat=100&cb2=99be929b-a592a72f&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEXNBF8S5r_kDso8gnLYtVAfCUfApm0U858JR8CmbRTzmVH2Q0XZuW-dEp_DEZcxAz8tNRgJXUOkFaBGy_b8J_W&_nc_ohc=ONNZe3DimvIQ7kNvwGl1n0Q&_nc_oc=AdlmwIpBBBfd9StFxTSHl_nwvbSc6SNxvcJVHzTJsvh8e6BKZWiRY_pJakoH6fcT4Gk&_nc_zt=23&_nc_ht=scontent.fbkk29-1.fna&_nc_gid=ypu2jBISuxfrHttIgQsyMA&oh=00_Afk9siaiRvro2Cb9rk-OsCaAenHyCecj4kXs9-9Hbgq2ww&oe=6959FF72",
+                    "https://scontent.fbkk29-6.fna.fbcdn.net/v/t1.6435-9/117655449_632979907417245_3615070491268192602_n.jpg?_nc_cat=109&cb2=99be929b-a592a72f&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEsphMdlLF6V0hYjJlDQWDrswmoeIOkz5WzCah4g6TPlcoWcX9686a5ZXzIJ5XDXaPobrb0KKCBp7UpAUPJA-1S&_nc_ohc=-1l6g8AiBhwQ7kNvwGwcZyD&_nc_oc=AdmdOCdl9W3h-zQzaETtcxGINsh15xzj_1qR9HzZ-8SfjcAfmzy4G0Iz-0gaib9YPr0&_nc_zt=23&_nc_ht=scontent.fbkk29-6.fna&_nc_gid=dIYZAxn_g3LJd4Fgf1ob3Q&oh=00_AfkGIO0coa1AhDiJKqkWKxgBB2TW6Ki53kiUuuvxj6o6kg&oe=695A00B0"
+                ]
+            },
+            {
+                title: "ศูนย์ประชุมกาญจนาภิเษก",
+                desc: "อาคารสถาปัตยกรรมที่โดดเด่นด้วยรูปทรงคล้ายเรือนอีสานประยุกต์ ตั้งอยู่ริมบึงสีฐาน ใช้เป็นสถานที่พระราชทานปริญญาบัตร และจัดงานนิทรรศการระดับประเทศ",
+                openTime: "08:30 - 16:30 น.",
+                activities: [
+                    "ถ่ายรูปชุดครุย",
+                    "เดินชมสถาปัตยกรรม",
+                    "ชมนิทรรศการ (ตามช่วงงาน)"
+                ],
+                icons: ["fa-graduation-cap", "fa-building", "fa-camera"],
+                images: [
+                    "https://asset.kku.ac.th/wp-content/uploads/2025/02/2025-02-04_08-51-31_488661.png",
+                    "https://asset.kku.ac.th/wp-content/uploads/2025/02/2025-02-04_08-51-21_489028.jpg"
+                ]
+            },
+            {
+                title: "พิพิธภัณฑ์ธรรมชาติวิทยา",
+                desc: "แหล่งเรียนรู้ที่รวบรวมตัวอย่างทางชีวภาพ ฟอสซิลไดโนเสาร์ภาคอีสาน และความรู้เกี่ยวกับระบบนิเวศ ภายในมีการจัดแสดงโครงกระดูกสัตว์ หินแร่ และนิทรรศการหมุนเวียน",
+                openTime: "09:00 - 16:00 น. (หยุดวันจันทร์)",
+                activities: [
+                    "ชมโครงกระดูกไดโนเสาร์",
+                    "ศึกษาหินและแร่",
+                    "เรียนรู้ระบบนิเวศอีสาน"
+                ],
+                icons: ["fa-bone", "fa-leaf", "fa-microscope"],
+                images: [
+                    "https://www.adlibhotels.co/wp-content/uploads/2025/05/1-NHM.jpg",
+                    "https://www.adlibhotels.co/wp-content/uploads/2025/05/3-NHM.jpg"
+                ]
+            },
+            {
+                title: "หอสมุดกลาง (KKU Library)",
+                desc: "ศูนย์รวมความรู้ขนาดใหญ่ที่ทันสมัย ปรับโฉมใหม่ให้เป็น Learning Center มีพื้นที่นั่งอ่านหนังสือหลากหลายโซน ห้องประชุมกลุ่ม พื้นที่ดูหนัง และคาเฟ่",
+                openTime: "24 ชั่วโมง (ช่วงสอบ)",
+                activities: [
+                    "อ่านหนังสือสอบ",
+                    "ใช้บริการ Co-working space",
+                    "ดูหนังที่โซนบันเทิง",
+                    "นั่งคาเฟ่"
+                ],
+                icons: ["fa-book", "fa-coffee", "fa-wifi"],
+                images: [
+                    "https://library.kku.ac.th/wp-content/uploads/2022/04/1-1024x576.png",
+                    "https://scontent.fbkk29-8.fna.fbcdn.net/v/t1.6435-9/70536274_2268738436570699_7961288114444435456_n.jpg?_nc_cat=105&cb2=99be929b-a592a72f&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeG8P7GNw8-rOx04g9xRoUQVajPrNWCrooBqM-s1YKuigHxXbXyx_FcH2DWUWlXw00reDEbcZCTylOnUa2dAAYvo&_nc_ohc=oni87MEBJHMQ7kNvwFtJVT6&_nc_oc=Adk_1HT-6cJDSr9yt80BoSIpASY8ztMaI38szqKfDOn8Mh9Spzen9OgJ0UwCg-Z3S84&_nc_zt=23&_nc_ht=scontent.fbkk29-8.fna&_nc_gid=W8eOswUJ6PMoxVS79esuqw&oh=00_AfmkXb4QQiK1rIpcZBovkBbD8S7NcHY_uBKfNl_m8yxPQw&oe=695A37A0"
+                ]
+            }
+        ];
+
+        function renderPlaces() {
+            const container = document.getElementById('placesGridContainer');
+            container.innerHTML = ''; 
+
+            placesData.forEach((place, index) => {
+                const card = document.createElement('article');
+                card.className = 'place-card';
+                card.onclick = () => openModal(index);
+
+                const iconsHtml = place.icons.map(icon => 
+                    `<div class="activity-icon"><i class="fas ${icon}"></i></div>`
+                ).join('');
+
+                card.innerHTML = `
+                    <div class="place-img-container">
+                        <img src="${place.images[0]}" alt="${place.title}" class="place-img">
+                        <div class="time-badge"><i class="far fa-clock"></i> ${place.openTime}</div>
+                        <div class="activity-icons-float">
+                            ${iconsHtml}
+                        </div>
+                    </div>
+                    <div class="place-info">
+                        <h3 class="place-title">${place.title}</h3>
+                        <p class="place-excerpt">${place.desc}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        
+        function enterSite() {
+            const landing = document.getElementById('landing-page');
+            const mainContent = document.getElementById('main-content');
+            landing.classList.add('slide-up');
+            mainContent.style.display = 'block';
+            
+            
+            renderPlaces();
+        }
+
+        
+        const modal = document.getElementById('placeModal');
+        const modalBody = document.getElementById('modalBody');
+
+        function openModal(index) {
+            const data = placesData[index];
+            
+            const activitiesList = data.activities.map(act => 
+                `<li><i class="fas fa-check-circle"></i> ${act}</li>`
+            ).join('');
+
+            const htmlContent = `
+                <h2 style="color: var(--accent-color); margin-bottom:15px;">${data.title}</h2>
+                <div class="modal-images">
+                    <img src="${data.images[0]}" alt="Image 1">
+                    <img src="${data.images[1]}" alt="Image 2">
+                </div>
+                
+                <p style="font-size: 1.1rem; line-height: 1.6; color: #ddd; margin-bottom: 20px;">
+                    ${data.desc}
+                </p>
+
+                <!-- Guide Section -->
+                <div class="modal-guide">
+                    <div class="guide-header">
+                        <i class="far fa-clock" style="font-size: 1.2rem; color: var(--accent-color);"></i>
+                        <span>เวลาทำการ: ${data.openTime}</span>
+                    </div>
+                    <hr style="border: 0; border-top: 1px solid #444; margin: 10px 0;">
+                    <div class="guide-header">
+                        <i class="fas fa-map-signs" style="font-size: 1.2rem; color: var(--accent-color);"></i>
+                        <span>กิจกรรมที่แนะนำ (What to do):</span>
+                    </div>
+                    <ul class="guide-list">
+                        ${activitiesList}
+                    </ul>
+                </div>
+            `;
+            
+            modalBody.innerHTML = htmlContent;
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
