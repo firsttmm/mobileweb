@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4: Photo Gallery - ผลงานนักศึกษา</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .screenshot {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary">Lab 4: Photo Gallery</h1>
+            <h3 class="text-muted">Ionic Vue + Capacitor Camera</h3>
+            <div class="mt-4 p-3 bg-white rounded shadow-sm d-inline-block">
+                <p class="fs-5 m-0">ชื่อ-สกุล: อรจิรา แสนตา</p>
+                <p class="fs-5 m-0">รหัสนักศึกษา: 663380244-5 </p>
+            </div>
+            <br>
+            <a href="index.html" class="btn btn-outline-secondary mt-4">← กลับหน้าหลัก</a>
+        </div>
+
+        <div class="row justify-content-center">
+            
+            <div class="col-md-8 text-center mb-5">
+                <div class="card shadow-sm p-4 border-primary">
+                    <h3 class="text-primary"><i class="bi bi-android2"></i> Android Application</h3>
+                    <p>ดาวน์โหลดไฟล์ .apk เพื่อติดตั้งทดสอบบนมือถือ Android</p>
+                    <a href="lab4.apk" class="btn btn-success btn-lg px-5">
+                        <i class="bi bi-download"></i> ดาวน์โหลด lab4.apk
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-10">
+                <h3 class="border-bottom pb-2 mb-4">📸 ภาพตัวอย่างการทำงาน</h3>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-4 text-center">
+                        <h5>1. หน้าจอหลัก (บน Browser)</h5>
+                        <img src="1.png" alt="หน้าจอหลักบนเว็บ" class="screenshot">
+                    </div>
+
+                    <div class="col-md-6 mb-4 text-center">
+                        <h5>2. การทำงานของกล้อง/Gallery</h5>
+                        <img src="2.png" alt="ขณะถ่ายรูป" class="screenshot">
+                    </div>
+
+                    <div class="col-md-6 mx-auto mb-4 text-center">
+                        <h5>3. การแสดงผลบน Android</h5>
+                        <img src="3.png" alt="บน Android" class="screenshot">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
