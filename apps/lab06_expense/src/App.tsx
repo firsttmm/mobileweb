@@ -1,0 +1,67 @@
+import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import {
+  IonApp, IonIcon, IonLabel, IonRouterOutlet,
+  IonTabBar, IonTabButton, IonTabs, setupIonicReact
+} from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import { wallet, addCircle, settings } from 'ionicons/icons';
+
+// Import Pages
+import Tab1 from './pages/Tab1';
+import Tab2 from './pages/Tab2';
+import Tab3 from './pages/Tab3';
+import EditExpense from './pages/EditExpense'; // ต้อง Import หน้านี้
+
+/* Core CSS required for Ionic components to work properly */
+import '@ionic/react/css/core.css';
+import '@ionic/react/css/normalize.css';
+import '@ionic/react/css/structure.css';
+import '@ionic/react/css/typography.css';
+import '@ionic/react/css/padding.css';
+import '@ionic/react/css/float-elements.css';
+import '@ionic/react/css/text-alignment.css';
+import '@ionic/react/css/text-transformation.css';
+import '@ionic/react/css/flex-utils.css';
+import '@ionic/react/css/display.css';
+import '@ionic/react/css/palettes/dark.system.css';
+import './theme/variables.css';
+
+setupIonicReact();
+
+const App: React.FC = () => (
+  <IonApp>
+    <IonReactRouter>
+      <IonTabs>
+        <IonRouterOutlet>
+          {/* หน้าหลักทั้ง 3 */}
+          <Route exact path="/tab1"> <Tab1 /> </Route>
+          <Route exact path="/tab2"> <Tab2 /> </Route>
+          <Route path="/tab3"> <Tab3 /> </Route>
+          
+          {/* เส้นทางหน้าแก้ไข (ต้องมี :id) */}
+          <Route path="/edit/:id"> <EditExpense /> </Route>
+
+          <Route exact path="/"> <Redirect to="/tab1" /> </Route>
+        </IonRouterOutlet>
+
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="tab1" href="/tab1">
+            <IonIcon aria-hidden="true" icon={wallet} />
+            <IonLabel>ภาพรวม</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab2" href="/tab2">
+            <IonIcon aria-hidden="true" icon={addCircle} />
+            <IonLabel>จดบันทึก</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab3" href="/tab3">
+            <IonIcon aria-hidden="true" icon={settings} />
+            <IonLabel>ตั้งค่า</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
+    </IonReactRouter>
+  </IonApp>
+);
+
+export default App;
