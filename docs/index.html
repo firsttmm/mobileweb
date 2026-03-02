@@ -1,90 +1,168 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ผลงาน นางสาวอรจิรา แสนตา</title>
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Onchira Saenta</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-  body {
-    background: #f6f7ff; 
-    font-family: "Prompt", sans-serif;
-  }
+  <style>
+    :root {
+      --primary-color: #7b74f1;
+      --secondary-color: #6a5acd;
+      --bg-gradient: linear-gradient(135deg, #f6f7ff 0%, #eef1ff 100%);
+      --header-gradient: linear-gradient(135deg, #7b74f1 0%, #a39cf4 100%);
+    }
 
-  header {
-    background: linear-gradient(135deg, #b8c9ff, #e4d5ff);
-    color: #333;
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  }
+    body {
+      background: var(--bg-gradient);
+      font-family: "Prompt", sans-serif;
+      color: #444;
+    }
 
-  .week-title, h5.text-primary {
-    color: #6a5acd !important; 
-  }
+    /* Header Styling */
+    header {
+      background: var(--header-gradient);
+      color: white;
+      padding: 60px 0;
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 10px 30px rgba(123, 116, 241, 0.3);
+      margin-bottom: 40px;
+    }
 
-  .card {
-    border: none;
-    border-radius: 18px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: 0.2s;
-  }
+    header h3 { font-weight: 600; letter-spacing: 1px; }
+    header p { opacity: 0.9; margin-bottom: 5px; }
 
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-  }
+    /* Card Styling */
+    .card {
+      border: none;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
 
-  .btn-primary {
-    background-color: #7b74f1 !important;
-    border: none;
-    border-radius: 12px;
-  }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(123, 116, 241, 0.15);
+    }
 
-  .btn-primary:hover {
-    background-color: #6a63e6 !important;
-  }
+    .card-body { padding: 25px; }
 
-  footer {
-    color: #666;
-    margin-top: 40px;
-  }
-</style>
+    .week-badge {
+      display: inline-block;
+      padding: 5px 15px;
+      background: #f0eeff;
+      color: var(--primary-color);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .card-title {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 20px;
+      min-height: 60px;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+      background-color: var(--primary-color) !important;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-weight: 500;
+      transition: 0.2s;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--secondary-color) !important;
+      transform: scale(1.02);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      background: transparent;
+      margin-top: 10px;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    /* Highlight for Latest Lab */
+    .latest-lab {
+      border: 2px solid var(--primary-color);
+      position: relative;
+    }
+    
+    .latest-tag {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #ff4757;
+      color: white;
+      padding: 2px 10px;
+      border-radius: 5px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="text-center py-4">
-  <h3>รายวิชา Mobile Web Application Development</h3>
-  <p>ภาคการศึกษา 2-2568</p>
-  <p><strong>ชื่อ-สกุลนักศึกษา: นางสาวอรจิรา แสนตา</strong></p>
-  <p><strong>รหัสนักศึกษา: 663380244-5</strong></p>
+<header class="text-center">
+  <div class="container">
+    <h3>Mobile Web Application Development</h3>
+    <p class="mt-3">ภาคการศึกษา 2-2568</p>
+    <div class="mt-4">
+      <p><strong>ชื่อ-สกุล:</strong> นางสาวอรจิรา แสนตา</p>
+      <p><strong>รหัสนักศึกษา:</strong> 663380244-5</p>
+    </div>
+  </div>
 </header>
 
-<main class="container mt-4">
-  <h4 class="mb-4 text-primary">สรุปผลงานการฝึกปฏิบัติรายสัปดาห์</h4>
+<main class="container">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h4 class="fw-bold m-0" style="color: var(--secondary-color);">สรุปผลงานการฝึกปฏิบัติรายสัปดาห์</h4>
+    <span class="badge bg-white text-dark shadow-sm p-2 px-3 rounded-pill">Total: 9 Labs</span>
+  </div>
 
   <div class="row g-4">
 
     <div class="col-md-6 col-lg-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="week-title">
-            Week 1: การเตรียม Workspace
-          </h5>
-          <p>
-            ติดตั้งเครื่องมือที่จำเป็นสำหรับฝึกปฏิบัติการในรายวิชา  
-            ทดลองสร้าง ionic-vue และ ionic-react
-          </p>
-          <a href="lab01_vue/index.html" 
-             class="btn btn-primary mb-2" target="_blank">Lab01_Vue</a>
-          <a href="lab01_react/index.html" 
-             class="btn btn-primary mb-2" target="_blank">Lab01_React</a>
-          <br />
-          <span class="text-muted small">วันที่ส่งผลงาน: 24 พฤศจิกายน 2568</span>
+          <span class="week-badge">Week 1</span>
+          <h5 class="card-title">การเตรียม Workspace</h5>
+          <p class="card-text">ติดตั้งเครื่องมือที่จำเป็นสำหรับรายวิชา ทดลองสร้างโปรเจกต์ ionic-vue และ ionic-react</p>
+          <div class="d-grid gap-2">
+            <a href="lab01_vue/index.html" class="btn btn-primary" target="_blank">Lab01_Vue</a>
+            <a href="lab01_react/index.html" class="btn btn-primary btn-outline" target="_blank">Lab01_React</a>
+          </div>
         </div>
       </div>
     </div>
@@ -92,13 +170,10 @@
     <div class="col-md-6 col-lg-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="text-primary">Week 2: HTML5 & CSS3</h5>
-          <p>การสร้างโครงร่างและออกแบบหน้าเว็บด้วย HTML5 และ CSS3 (KKU Campus Guide)</p>
-          
-          <a href="lab02_guide/index.html" 
-             class="btn btn-primary mb-2" target="_blank">ดูผลงาน</a>
-          <br />
-          <span class="text-muted small">วันที่ส่งผลงาน: 5 ธันวาคม 2568</span>
+          <span class="week-badge">Week 2</span>
+          <h5 class="card-title">HTML5 & CSS3</h5>
+          <p class="card-text">ออกแบบหน้าเว็บ KKU Campus Guide ด้วย HTML5 และ CSS3</p>
+          <a href="lab02_guide/index.html" class="btn btn-primary" target="_blank">ดูผลงาน</a>
         </div>
       </div>
     </div>
@@ -106,13 +181,10 @@
     <div class="col-md-6 col-lg-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="text-primary">Week 3: JavaScript & TypeScript</h5>
-          <p>การเขียน JavaScript และ TypeScript <br> ระบบจัดการข้อมูลนักศึกษา (Student Management System)</p>
-          
-          <a href="lab03_typescipt/index.html" 
-             class="btn btn-primary mb-2" target="_blank">ดูผลงาน</a>
-          <br />
-          <span class="text-muted small">วันที่ส่งผลงาน: 8 ธันวาคม 2568</span>
+          <span class="week-badge">Week 3</span>
+          <h5 class="card-title">JavaScript & TypeScript</h5>
+          <p class="card-text">พัฒนาระบบ SMS (Student Management System) ด้วย TypeScript</p>
+          <a href="lab03_typescipt/index.html" class="btn btn-primary" target="_blank">ดูผลงาน</a>
         </div>
       </div>
     </div>
@@ -120,16 +192,10 @@
     <div class="col-md-6 col-lg-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="text-primary">Week 4: Photo Gallery (Vue)</h5>
-          <p>
-            พัฒนาแอปพลิเคชัน Photo Gallery ด้วย Ionic Vue และ Capacitor Plugins 
-            (Camera, Filesystem, Preferences)
-          </p>
-
-          <a href="lab04_ionicvue/index.html" 
-             class="btn btn-primary mb-2" target="_blank">ดูผลงาน</a>
-          <br />
-          <span class="text-muted small">วันที่ส่งผลงาน: 10 มกราคม 2569</span>
+          <span class="week-badge">Week 4</span>
+          <h5 class="card-title">Photo Gallery (Vue)</h5>
+          <p class="card-text">พัฒนาแอป Gallery ด้วย Ionic Vue เชื่อมต่อ Camera และ Filesystem</p>
+          <a href="lab04_ionicvue/index.html" class="btn btn-primary" target="_blank">ดูผลงาน</a>
         </div>
       </div>
     </div>
@@ -137,16 +203,10 @@
     <div class="col-md-6 col-lg-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="text-primary">Week 5: Photo Gallery (React)</h5>
-          <p>
-            พัฒนาแอปพลิเคชัน Photo Gallery ด้วย Ionic React และ Capacitor Plugins 
-            (Camera, Filesystem, Preferences)
-          </p>
-
-          <a href="lab05-photo-react/index.html" 
-             class="btn btn-primary mb-2" target="_blank">ดูผลงาน</a>
-          <br />
-          <span class="text-muted small">วันที่ส่งผลงาน: 18 มกราคม 2569</span>
+          <span class="week-badge">Week 5</span>
+          <h5 class="card-title">Photo Gallery (React)</h5>
+          <p class="card-text">พัฒนาแอป Gallery ด้วย Ionic React และ Capacitor Plugins</p>
+          <a href="lab05-photo-react/index.html" class="btn btn-primary" target="_blank">ดูผลงาน</a>
         </div>
       </div>
     </div>
@@ -154,16 +214,10 @@
     <div class="col-md-6 col-lg-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="text-primary">Week 6: Expense Tracker</h5>
-          <p>
-            พัฒนาแอปพลิเคชันบันทึกรายรับ-รายจ่าย เชื่อมต่อฐานข้อมูล Firebase Firestore 
-            (CRUD Operations)
-          </p>
-
-          <a href="https://lab06-expense-eea5d.web.app/tab1" 
-             class="btn btn-primary mb-2" target="_blank">ดูผลงาน</a>
-          <br />
-          <span class="text-muted small">วันที่ส่งผลงาน: 8 กุมภาพันธ์ 2569</span>
+          <span class="week-badge">Week 6</span>
+          <h5 class="card-title">Expense Tracker</h5>
+          <p class="card-text">บันทึกรายรับ-รายจ่าย เชื่อมต่อฐานข้อมูล Firebase Firestore (CRUD)</p>
+          <a href="https://lab06-expense-eea5d.web.app/tab1" class="btn btn-primary" target="_blank">ดูผลงานออนไลน์</a>
         </div>
       </div>
     </div>
@@ -171,52 +225,44 @@
     <div class="col-md-6 col-lg-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="text-primary">Week 7: Authentication</h5>
-          <p>ระบบสมัครสมาชิกและเข้าสู่ระบบด้วย Firebase Authentication จัดการสถานะผู้ใช้</p>
-
-          <a href="https://lab07-authen.web.app" 
-             class="btn btn-primary mb-2" target="_blank">ดูผลงาน</a>
-          <br />
-          <span class="text-muted small">วันที่ส่งผลงาน: 15 กุมภาพันธ์ 2569</span>
+          <span class="week-badge">Week 7</span>
+          <h5 class="card-title">Authentication</h5>
+          <p class="card-text">ระบบ Authen ด้วย Firebase จัดการสมัครสมาชิกและเข้าสู่ระบบ</p>
+          <a href="https://lab07-authen.web.app" class="btn btn-primary" target="_blank">ดูผลงานออนไลน์</a>
         </div>
       </div>
     </div>
 
     <div class="col-md-6 col-lg-4">
-      <div class="card h-100" style="border: 1px solid #7b74f1;">
+      <div class="card h-100">
         <div class="card-body">
-          <h5 class="text-primary">Week 8: Gemini Vision AI</h5>
-          <p>วิเคราะห์ภาพถ่ายด้วย AI Gemini 1.5 Flash ผ่าน Firebase AI Logic บน Android</p>
+          <span class="week-badge">Week 8</span>
+          <h5 class="card-title">Gemini Vision AI</h5>
+          <p class="card-text">วิเคราะห์ภาพถ่ายด้วย AI Gemini 1.5 Flash ผ่าน Firebase บน Android</p>
+          <a href="lab08_ai/index.html" class="btn btn-primary" target="_blank">ดูรายละเอียด</a>
+        </div>
+      </div>
+    </div>
 
-          <a href="lab08_ai/index.html" 
-             class="btn btn-primary mb-2" target="_blank">ดูรายละเอียด Lab 08</a>
-          <br />
-          <span class="text-muted small">วันที่ส่งผลงาน: 22 กุมภาพันธ์ 2569</span>
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 latest-lab">
+        <div class="latest-tag">New</div>
+        <div class="card-body">
+          <span class="week-badge">Week 9</span>
+          <h5 class="card-title">Mobile Sensors (Exercise AI)</h5>
+          <p class="card-text">ตรวจจับการเคลื่อนไหวด้วย Accelerometer ผสานเสียงพูด (TTS) และการสั่น</p>
+          <a href="lab09_sensors/index.html" class="btn btn-primary" target="_blank">ดูรายละเอียด Lab 09</a>
         </div>
       </div>
     </div>
 
   </div>
-    <div class="col-md-6 col-lg-4">
-      <div class="card h-100" style="border: 2px solid #7b74f1;">
-        <div class="card-body">
-          <h5 class="text-primary">Week 9: Mobile Sensors</h5>
-          <p>
-            พัฒนาระบบตรวจจับการเคลื่อนไหว (Arm Exercise) ด้วย Accelerometer Sensor 
-            ผสานการทำงานกับ Text-to-Speech และ Haptics (Vibration) บน Android
-          </p>
-
-          <a href="../lab09-sensors/lab09.html" 
-             class="btn btn-primary mb-2" target="_blank">ดูรายละเอียด Lab 09</a>
-          <br />
-          <span class="text-muted small">วันที่ส่งผลงาน: 2 มีนาคม 2569</span>
-        </div>
-      </div>
-    </div>
 </main>
 
-<footer class="text-center mb-3">
-  <p>© 2026 Mobile Web Application Development — College of Computing, Khon Kaen University</p>
+<footer class="text-center">
+  <div class="container border-top pt-4">
+    <p>© 2026 Mobile Web Application Development — College of Computing, Khon Kaen University</p>
+  </div>
 </footer>
 
 </body>
